@@ -1,6 +1,6 @@
 {
-  "templates": {
-    "finance": {
+  "templates": [
+   {
       "envTemplateName": "finp2p3",
       "org": "food-bl",
       "pod": "finance",
@@ -506,5 +506,5 @@
       ],
       "ttl": 0
     }
-  }
+  ]
 }
