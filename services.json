@@ -505,6 +505,359 @@
         }
       ],
       "ttl": 0
+    },
+    {
+  "envTemplateName": "payments",
+  "org": "storefront",
+  "pod": "payments",
+  "envOwners": "[\"divyam.kumar@swiggy.in\",\"prashant.sodani@swiggy.in\",\"rajesh.chaukwale@swiggy.in\",\"sumit.sinha@swiggy.in\",\"archit.agarwal@swiggy.in\",\"shailesh.mishra_nuv@external.swiggy.in\"]",
+  "ttlInHours": "",
+  "additionalComponents": [
+    "kafka",
+    "kong",
+    "consul",
+    "consumerHaProxy",
+    "mysqlEcs",
+    "redisEcs",
+    "dax",
+    "awsBatch"
+  ],
+  "services": [
+    {
+      "name": "payment-presentation-service",
+      "version": "latest",
+      "dependentServices": [
+        "checkout-paas-service-mumbai",
+        "sand-user-service",
+        "notification-lambda"
+      ],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "app.yaml",
+      "branchName": "master",
+      "repo": "shield"
+    },
+    {
+      "name": "checkout-paas-service-mumbai",
+      "version": "latest",
+      "dependentServices": ["notification-lambda"],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "app-eph.yaml",
+      "branchName": "master",
+      "repo": "paas"
+    },
+    {
+      "name": "payments",
+      "version": "latest",
+      "dependentServices": ["swigconfig"],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "payments/app.yaml",
+      "branchName": "master",
+      "repo": "payment-sos"
+    },
+    {
+      "name": "upi",
+      "version": "latest",
+      "dependentServices": [],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "upi/app.yaml",
+      "branchName": "master",
+      "repo": "payment-sos"
+    },
+    {
+      "name": "notification-lambda",
+      "version": "latest",
+      "dependentServices": [],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "lambdas/notification-lambda/app.yaml",
+      "branchName": "master",
+      "repo": "payment-lambda"
+    },
+    {
+      "name": "swiggy-test-executor",
+      "version": "1.2.00-4742",
+      "dependentServices": [
+        "checkout-paas-service-mumbai",
+        "sand-user-service",
+        "payment-presentation-service",
+        "cbcc-core"
+      ],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "/deployments/payments/payments.yaml",
+      "branchName": "master",
+      "repo": "swiggy-test-executor"
+    },
+    {
+      "name": "session-service-grpc",
+      "version": "latest",
+      "dependentServices": [],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "session-grpc.yaml",
+      "branchName": "master",
+      "repo": "session-service"
+    },
+    {
+      "name": "session-service-v2",
+      "version": "latest",
+      "dependentServices": [],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "session-service-v2.yaml",
+      "branchName": "master",
+      "repo": "session-service"
+    },
+    {
+      "name": "ozone-idp",
+      "version": "latest",
+      "dependentServices": null,
+      "isMockService": false,
+      "commitSha": "",
+      "file": "shuttle/dp/deploy/de-app/app.yaml",
+      "branchName": "master",
+      "repo": "ozone-idp"
+    },
+    {
+      "name": "ozone-idp-cx",
+      "version": "latest",
+      "dependentServices": ["ozone-idp"],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "shuttle/cx/deploy/app.yaml",
+      "branchName": "master",
+      "repo": "ozone-idp"
+    },
+    {
+      "name": "sand-user-service",
+      "version": "latest",
+      "dependentServices": ["ozone-idp-cx"],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "user-service.yaml",
+      "branchName": "master",
+      "repo": "user-service"
+    },
+    {
+      "name": "identity-service",
+      "version": "latest",
+      "dependentServices": null,
+      "isMockService": false,
+      "commitSha": "",
+      "file": "app.yaml",
+      "branchName": "master",
+      "repo": "identity-service"
+    },
+    {
+      "name": "audit-service",
+      "version": "latest",
+      "dependentServices": null,
+      "isMockService": false,
+      "commitSha": "",
+      "file": "app.yaml",
+      "branchName": "master",
+      "repo": "audit-service"
+    },
+    {
+      "name": "bank-proxy-service",
+      "version": "latest",
+      "dependentServices": ["audit-service"],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "app.yaml",
+      "branchName": "master",
+      "repo": "bank-proxy-service"
+    },
+    {
+      "name": "wallet-service",
+      "version": "latest",
+      "dependentServices": [],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "app.yaml",
+      "branchName": "master",
+      "repo": "wallet-service"
+    },
+    {
+      "name": "slayer-service",
+      "version": "latest",
+      "dependentServices": [],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "app.yaml",
+      "branchName": "master",
+      "repo": "slayer-service"
+    },
+    {
+      "name": "checkout-paas-mock-service",
+      "version": "1.2.00-7588-checkout-paas-mock-service",
+      "dependentServices": null,
+      "isMockService": true,
+      "commitSha": "",
+      "file": "checkout-paas-mock-service/app.yaml",
+      "branchName": "master",
+      "repo": "swiggy-integration-mock"
+    },
+    {
+      "name": "ofb-grpc-server",
+      "version": "1.2.00-3052-ofb-grpc-server",
+      "dependentServices": null,
+      "isMockService": true,
+      "commitSha": "",
+      "file": "ofb-grpc-server/app.yaml",
+      "branchName": "master",
+      "repo": "swiggy-integration-mock"
+    },
+    {
+      "name": "checkout-service",
+      "version": "1.2.00-3053-checkout-service",
+      "dependentServices": null,
+      "isMockService": true,
+      "commitSha": "",
+      "file": "checkout-service/app.yaml",
+      "branchName": "master",
+      "repo": "swiggy-integration-mock"
+    },
+    {
+      "name": "cbcc-core",
+      "version": "latest",
+      "dependentServices": null,
+      "isMockService": false,
+      "commitSha": "",
+      "file": "app.yaml",
+      "branchName": "master",
+      "repo": "cbcc-core"
+    },
+    {
+      "name": "cp-controller",
+      "version": "latest",
+      "dependentServices": [],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "controller/app.yaml",
+      "branchName": "master",
+      "repo": "cp"
+    },
+    {
+      "name": "config-ui",
+      "version": "latest",
+      "dependentServices": ["cp-controller"],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "app.yaml",
+      "branchName": "master",
+      "repo": "config-ui"
+    },
+    {
+      "name": "swigconfig",
+      "version": "latest",
+      "dependentServices": ["cp-controller"],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "configservice/app.yaml",
+      "branchName": "master",
+      "repo": "cp"
+    },
+    {
+      "name": "shaktimaan",
+      "version": "1.2.00-1641-shaktimaan",
+      "dependentServices": [],
+      "isMockService": true,
+      "commitSha": "",
+      "file": "shaktimaan/app.yaml",
+      "branchName": "master",
+      "repo": "swiggy-integration-mock"
+    },
+    {
+      "name": "membership-bl",
+      "version": "1.2.00-2214-membership-bl",
+      "dependentServices": [],
+      "isMockService": true,
+      "commitSha": "",
+      "file": "membership-bl/app.yaml",
+      "branchName": "master",
+      "repo": "swiggy-integration-mock"
+    },
+    {
+      "name": "narad-router",
+      "version": "1.2.00-3984-narad-router",
+      "dependentServices": [],
+      "isMockService": true,
+      "commitSha": "",
+      "file": "narad-router/app.yaml",
+      "branchName": "master",
+      "repo": "swiggy-integration-mock"
+    },
+    {
+      "name": "address-manager-cas",
+      "version": "1.3.00-2888-address-manager-cas",
+      "dependentServices": [],
+      "isMockService": true,
+      "commitSha": "",
+      "file": "address-manager-cas/app.yaml",
+      "branchName": "master",
+      "repo": "swiggy-integration-mock"
+    },
+    {
+      "name": "retool",
+      "version": "latest",
+      "dependentServices": [],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "retool-api/app.yaml",
+      "branchName": "master",
+      "repo": "retool-apps"
+    },
+    {
+      "name": "retool-job",
+      "version": "0.1.00-966-retool-job",
+      "dependentServices": ["retool"],
+      "isMockService": false,
+      "commitSha": "",
+      "file": "retool-job/app.yaml",
+      "branchName": "master",
+      "repo": "retool-apps"
     }
+  ],
+  "createdBy": "sowmya.n@swiggy.in",
+  "createdAt": "",
+  "updatedBy": "shailesh.mishra_nuv@external.swiggy.in",
+  "updatedAt": "1717497634",
+  "envType": "dev",
+  "environmentTask": [
+    {
+      "taskTriggerEnvState": "readyToUse",
+      "taskType": "http",
+      "taskPlaneType": "control",
+      "taskData": {
+        "endpoint": "https://blunn9m1ji.execute-api.ap-southeast-1.amazonaws.com/v0/trigger-test",
+        "header": {
+          "userId": "prashant.sodani@swiggy.in"
+        },
+        "method": "POST",
+        "payload": {
+          "artifact_id": "sit-consumerpayments",
+          "envInstanceName": "${EnvInstanceName}",
+          "group_id": "com.swiggy.sit-consumerpayments",
+          "repository": "swiggy-java-repository",
+          "test_details": [
+            {
+              "resource_name": "com.swiggy.consumerpayments.test.DynamoDBItemLoaderTest",
+              "resource_type": "CLASS",
+              "tests": null
+            }
+          ],
+          "test_type": "IMPERATIVE",
+          "version": "latest"
+        }
+      }
+    }
+  ],
+  "ttl": 0
+}
   ]
 }
