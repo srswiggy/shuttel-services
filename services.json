@@ -317,6 +317,16 @@
           "repo": "finance-oneview"
         },
         {
+          "name": "finance-maker-checker-service",
+          "version": "latest",
+          "dependentServices": [],
+          "isMockService": false,
+          "commitSha": "",
+          "file": "app.yaml",
+          "branchName": "master",
+          "repo": "finance-maker-checker-service"
+        },
+        {
           "name": "ozone-authz-1",
           "version": "latest",
           "dependentServices": [],
