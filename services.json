@@ -330,7 +330,8 @@
           "name": "commvault",
           "version": "latest",
           "dependentServices": [
-            "finance-calcy-service"
+            "finance-calcy-service",
+            "finance-maker-checker-service"
           ],
           "isMockService": false,
           "commitSha": "",
