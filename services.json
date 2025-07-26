@@ -80,7 +80,8 @@
             "finance-recon-platform",
             "finance-calcy-service",
             "finance-orchestrator",
-            "finance-de-payout-service"
+            "finance-de-payout-service",
+            "finance-maker-checker-service"
           ],
           "isMockService": false,
           "commitSha": "",
